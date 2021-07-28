@@ -1,22 +1,19 @@
 const express = require('express');
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
-const {Server} = require("socket.io");
-const io = new Server(server);
-
+const socket = require('./controllers/sockets');
 const users = require('./routes/users');
 
 app.use('/users', users);
+const port = process.env.PORT || 8080;
+const http = require('http').createServer(app);
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+http.listen(port, () => {
+    console.log('listening on *:' + port);
 });
 
-io.on('connection', (socket) => {
-    console.log('a user connected');
-});
-
-server.listen(3000, () => {
-    console.log('listening on *:3000');
+socket.listen(http, {
+    cors: {
+        origin: '*',
+    },
+    path: "/socket"
 });
