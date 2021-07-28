@@ -14,6 +14,14 @@ exports.findUserById = (id, callback) => {
     }
 };
 
+exports.getUsers = (callback) => {
+    if (users) {
+        callback(users)
+    } else {
+        callback(null, {message: "No Users found!"})
+    }
+};
+
 exports.deleteUserById = (id, callback) => {
     let index = users.indexOf(user => user.id === id);
     users.slice(index, 1);

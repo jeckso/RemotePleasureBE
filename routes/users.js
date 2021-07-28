@@ -49,4 +49,16 @@ router.get("/:id", (req, res) => {
     })
 });
 
+router.get("/", (req, res) => {
+    users.getUsers((err, user) => {
+        if (err) {
+            res.status(500).send(err);
+        } else if (user) {
+            res.status(200).send(user);
+        } else {
+            res.status(404).send({"message": "Not found"});
+        }
+    })
+});
+
 module.exports = router;
