@@ -7,6 +7,9 @@ router.use(bodyParser.json());
 
 router.post("/", (req, res) => {
     users.createUser(req.body, (err, user) => {
+        console.log(err)
+        console.log(user)
+
         if (err) {
             res.status(500).send(err);
         } else if (user) {
