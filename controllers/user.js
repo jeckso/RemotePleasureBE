@@ -10,7 +10,7 @@ exports.findUserById = (id, callback) => {
     if (user) {
         callback(user)
     } else {
-        callback(null, {message: "No User found!"})
+        callback({message: "No User found!"})
     }
 };
 
@@ -18,7 +18,7 @@ exports.getUsers = (callback) => {
     if (users) {
         callback(users)
     } else {
-        callback(null, {message: "No Users found!"})
+        callback({message: "No Users found!"})
     }
 };
 
